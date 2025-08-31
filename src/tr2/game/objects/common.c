@@ -201,6 +201,39 @@ BOUNDS_16 Object_GetBoundingBox(
     return new_bounds;
 }
 
+void Object_SetMeshReflective(
+    const GAME_OBJECT_ID obj_id, const int32_t mesh_idx, const bool enabled)
+{
+    const OBJECT *const obj = Object_Get(obj_id);
+    if (!obj->loaded) {
+        return;
+    }
+
+    OBJECT_MESH *const mesh = Object_GetMesh(obj->mesh_idx + mesh_idx);
+    mesh->enable_reflections = enabled;
+    for (int32_t i = 0; i < mesh->num_tex_face4s; i++) {
+        mesh->tex_face4s[i].enable_reflections = enabled;
+    }
+    for (int32_t i = 0; i < mesh->num_tex_face3s; i++) {
+        mesh->tex_face3s[i].enable_reflections = enabled;
+    }
+    for (int32_t i = 0; i < mesh->num_flat_face4s; i++) {
+        mesh->flat_face4s[i].enable_reflections = enabled;
+    }
+    for (int32_t i = 0; i < mesh->num_flat_face3s; i++) {
+        mesh->flat_face3s[i].enable_reflections = enabled;
+    }
+    Output_DispatchObjectMeshUpdate(obj->mesh_idx + mesh_idx);
+}
+
+void Object_SetReflective(const GAME_OBJECT_ID obj_id, const bool enabled)
+{
+    const OBJECT *const obj = Object_Get(obj_id);
+    for (int32_t i = 0; i < obj->mesh_count; i++) {
+        Object_SetMeshReflective(obj_id, i, enabled);
+    }
+}
+
 void Object_DrawMesh(
     const int32_t mesh_idx, const CLIP clip, const bool interpolated)
 {
@@ -210,9 +243,4 @@ void Object_DrawMesh(
     } else {
         Output_DrawObjectMesh(mesh, clip);
     }
-}
-
-void Object_SetReflective(const GAME_OBJECT_ID obj_id, const bool enabled)
-{
-    ASSERT_FAIL();
 }

@@ -38,6 +38,7 @@ static void M_Setup(OBJECT *const obj)
     obj->save_position = true;
     obj->save_flags = true;
     obj->save_anim = true;
+    Object_SetReflective(O_SPINNING_BLADE, true);
 }
 
 static void M_Initialise(const int16_t item_num)

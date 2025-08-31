@@ -21,9 +21,9 @@ X_UI_CFG_INT32(visuals.fov,                 SETTING_FOV, .min_value = 30, .max_v
 X_UI_CFG_BOOL(visuals.use_psx_fov,          SETTING_USE_PSX_FOV)
 #endif
 
-#if TR_VERSION == 1
+//#if TR_VERSION == 1
 X_UI_CFG_BOOL(visuals.enable_reflections,   SETTING_REFLECTIONS)
-#endif
+//#endif
 X_UI_CFG_BOOL(visuals.enable_skybox,        SETTING_ENABLE_SKYBOX)
 
 X_UI_CFG_BOOL(visuals.enable_braid,         SETTING_ENABLE_BRAID)

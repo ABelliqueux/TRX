@@ -38,6 +38,7 @@ static void M_Setup(OBJECT *const obj)
     obj->control_func = M_Control;
     obj->collision_func = Object_Collision;
     obj->shadow_size = 128;
+    Object_SetReflective(O_DART, true);
 }
 
 static void M_Control(const int16_t item_num)

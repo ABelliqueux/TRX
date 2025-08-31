@@ -171,6 +171,9 @@ void Game_Draw(bool draw_overlay)
         Overlay_DrawGameInfo();
     }
     SceneCompositor_Flush();
+    if (g_Config.visuals.enable_reflections) {
+        Output_Textures_UpdateEnvironmentMap();
+    }
     Game_DrawFade();
 }
 
