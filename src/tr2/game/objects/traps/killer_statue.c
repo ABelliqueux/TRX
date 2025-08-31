@@ -38,6 +38,7 @@ static void M_Setup(OBJECT *const obj)
     obj->collision_func = Object_Collision_Trap;
     obj->save_flags = true;
     obj->save_anim = true;
+    Object_SetMeshReflective(O_KILLER_STATUE, 7, true);
 }
 
 static void M_Initialise(const int16_t item_num)
